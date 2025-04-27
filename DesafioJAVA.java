@@ -4,86 +4,112 @@ import javax.swing.JOptionPane;
 
 public class DesafioJAVA {
     public static void main(String[] args) {
-        ArrayList<String> nomes = new ArrayList<>();
-        ArrayList<String> segmentos = new ArrayList<>();
-        ArrayList<String> marcas = new ArrayList<>();
-        ArrayList<Double> valores = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<String> segments = new ArrayList<>();
+        ArrayList<String> brands = new ArrayList<>();
+        ArrayList<Double> prices = new ArrayList<>();
 
-        while(true){
-            String menu = "Escolha uma opção:\n" +
-                          "1. Cadastrar um produto\n" +
-                          "2. Listar nomes\n" +
-                          "3. Atualizar nome\n" +
-                          "4. Remover nome\n" +
-                          "5. Sair";
+        while (true) {
+            String menu = "Choose an option:\n" +
+                          "1. Register a product\n" +
+                          "2. List names\n" +
+                          "3. Update name\n" +
+                          "4. Remove name\n" +
+                          "5. Exit";
 
-        
-            String opcao = JOptionPane.showInputDialog(null, menu);
+            String option = JOptionPane.showInputDialog(null, menu);
 
-            switch(opcao){
+            switch (option) {
                 case "1":
-                String nomeAdicionar = JOptionPane.showInputDialog("Digite o nome do produto");
-                nomes.add(nomeAdicionar);
+                    String nameToAdd = JOptionPane.showInputDialog("Enter the product name:");
+                    names.add(nameToAdd);
 
-                String segmentoAdicionar = JOptionPane.showInputDialog("Digite o segmento do produto");
-                segmentos.add(segmentoAdicionar);
+                    String segmentToAdd = JOptionPane.showInputDialog("Enter the product segment:");
+                    segments.add(segmentToAdd);
 
-                String marcaAdicionar = JOptionPane.showInputDialog("Digite a marca do produto");
-                marcas.add(marcaAdicionar);
+                    String brandToAdd = JOptionPane.showInputDialog("Enter the product brand:");
+                    brands.add(brandToAdd);
 
-                Double valorAdicionar = Double.parseDouble(JOptionPane.showInputDialog("Digite a marca do produto"));
-                valores.add(valorAdicionar);
-                JOptionPane.showMessageDialog(null, "Produto adicionado com sucesso!");
-                break;
+                    Double priceToAdd = Double.parseDouble(JOptionPane.showInputDialog("Enter the product price:"));
+                    prices.add(priceToAdd);
+                    JOptionPane.showMessageDialog(null, "Product successfully added!");
+                    break;
 
                 case "2":
-                    if (nomes.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Não há nenhum produto cadastrado.");
+                    if (names.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "There are no registered products.");
                     } else {
-                        String listaProdutos = "Lista de produtos:\n";
-                        for (int i = 0; i < nomes.size(); i++) {
-                            listaProdutos += (i + 1) + ". Nome: " + nomes.get(i) +
-                                             ", Segmento: " + segmentos.get(i) +
-                                             ", Marca: " + marcas.get(i) +
-                                             ", Valor: R$" + valores.get(i) + "\n";
+                        String productList = "Product list:\n";
+                        for (int i = 0; i < names.size(); i++) {
+                            productList += (i + 1) + ". Name: " + names.get(i) +
+                                           ", Segment: " + segments.get(i) +
+                                           ", Brand: " + brands.get(i) +
+                                           ", Price: $" + prices.get(i) + "\n";
                         }
-                        JOptionPane.showMessageDialog(null, listaProdutos);
+                        JOptionPane.showMessageDialog(null, productList);
                     }
                     break;
 
-                    case "3":
-                    if (nomes.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Não há produtos cadastrados para filtrar.");
+                case "3":
+                    if (names.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "There are no registered products to filter.");
                     } else {
-                        String tipoFiltro = JOptionPane.showInputDialog("Deseja filtrar por:\n1. Marca\n2. Segmento");
-                
-                        if (tipoFiltro.equals("1")) {
-                            String marcaFiltro = JOptionPane.showInputDialog("Digite o nome da marca para filtrar:");
-                            String resultado = "Produtos da marca " + marcaFiltro + ":\n";
-                
-                            for (int i = 0; i < marcas.size(); i++) {
-                                if (marcas.get(i).equalsIgnoreCase(marcaFiltro)) {
-                                    resultado += (i + 1) + ". Nome: " + nomes.get(i) +
-                                                 ", Segmento: " + segmentos.get(i) +
-                                                 ", Valor: R$" + valores.get(i) + "\n";
-                                }
-                            }
-                            } else if (tipoFiltro.equals("2")) {
-                            String segmentoFiltro = JOptionPane.showInputDialog("Digite o nome do segmento para filtrar:");
-                            String resultado = "Produtos do segmento " + segmentoFiltro + ":\n";
-                
-                            for (int i = 0; i < segmentos.size(); i++) {
-                                if (segmentos.get(i).equalsIgnoreCase(segmentoFiltro)) {
-                                    resultado += (i + 1) + ". Nome: " + nomes.get(i) +
-                                                 ", Marca: " + marcas.get(i) +
-                                                 ", Valor: R$" + valores.get(i) + "\n";
-                                }
-                            }
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Nenhum produto encontrado com esse segmento.");
-                            }
+                        String filterType = JOptionPane.showInputDialog("Do you want to filter by:\n1. Brand\n2. Segment");
 
+                        if (filterType.equals("1")) {
+                            String brandFilter = JOptionPane.showInputDialog("Enter the brand name to filter:");
+                            String result = "Products of brand " + brandFilter + ":\n";
+
+                            for (int i = 0; i < brands.size(); i++) {
+                                if (brands.get(i).equalsIgnoreCase(brandFilter)) {
+                                    result += (i + 1) + ". Name: " + names.get(i) +
+                                              ", Segment: " + segments.get(i) +
+                                              ", Price: $" + prices.get(i) + "\n";
+                                }
+                            }
+                            JOptionPane.showMessageDialog(null, result);
+                        } else if (filterType.equals("2")) {
+                            String segmentFilter = JOptionPane.showInputDialog("Enter the segment name to filter:");
+                            String result = "Products of segment " + segmentFilter + ":\n";
+
+                            for (int i = 0; i < segments.size(); i++) {
+                                if (segments.get(i).equalsIgnoreCase(segmentFilter)) {
+                                    result += (i + 1) + ". Name: " + names.get(i) +
+                                              ", Brand: " + brands.get(i) +
+                                              ", Price: $" + prices.get(i) + "\n";
+                                }
+                            }
+                            JOptionPane.showMessageDialog(null, result);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No products found with this filter.");
+                        }
                     }
+                    break;
+
+                case "4":
+                    String indexToUpdateStr = JOptionPane.showInputDialog("Enter the number of the product to update (1 to " + names.size() + "):");
+                    int indexToUpdate = Integer.parseInt(indexToUpdateStr) - 1;
+
+                    Double newPrice = Double.parseDouble(JOptionPane.showInputDialog("Enter the new product price:"));
+                    prices.set(indexToUpdate, newPrice);
+                    break;
+
+                case "5":
+                    String indexToRemoveStr = JOptionPane.showInputDialog("Enter the number of the product to remove (1 to " + names.size() + "):");
+                    int indexToRemove = Integer.parseInt(indexToRemoveStr) - 1;
+                    names.remove(indexToRemove);
+                    brands.remove(indexToRemove);
+                    segments.remove(indexToRemove);
+                    prices.remove(indexToRemove);
+                    break;
+
+                case "6":
+                    JOptionPane.showMessageDialog(null, "Exiting the program. See you soon!");
+                    System.exit(0);
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(null, "Invalid option! Please try again.");
                     break;
             }
         }
