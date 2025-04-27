@@ -67,7 +67,9 @@ public class DesafioJAVA {
                                               ", Price: $" + prices.get(i) + "\n";
                                 }
                             }
+
                             JOptionPane.showMessageDialog(null, result);
+
                         } else if (filterType.equals("2")) {
                             String segmentFilter = JOptionPane.showInputDialog("Enter the segment name to filter:");
                             String result = "Products of segment " + segmentFilter + ":\n";
@@ -79,7 +81,9 @@ public class DesafioJAVA {
                                               ", Price: $" + prices.get(i) + "\n";
                                 }
                             }
+                            
                             JOptionPane.showMessageDialog(null, result);
+
                         } else {
                             JOptionPane.showMessageDialog(null, "No products found with this filter.");
                         }
@@ -87,7 +91,7 @@ public class DesafioJAVA {
                     break;
 
                 case "4":
-                    String indexToUpdateStr = JOptionPane.showInputDialog("Enter the number of the product to update (1 to " + names.size() + "):");
+                    String indexToUpdateStr = JOptionPane.showInputDialog("You can update the products' values. Enter the number of the product to update (1 to " + names.size() + "):");
                     int indexToUpdate = Integer.parseInt(indexToUpdateStr) - 1;
 
                     Double newPrice = Double.parseDouble(JOptionPane.showInputDialog("Enter the new product price:"));
